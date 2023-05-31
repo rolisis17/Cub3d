@@ -18,7 +18,7 @@ END=\033[0m
 all : $(NAME)
 
 $(NAME) : $(BIN) $(OBJ) | $(LIBFT)
-	@$(CC) $(OBJ) $(FLAGS) -Llibft -lft -o $(NAME)
+	@$(CC) $(OBJ) $(FLAGS) -Lmlx_linux -lmlx_Linux -Llibft -lft -Imlx_linux -lXext -lX11 -o $(NAME)
 	@echo "$(GREEN)>>>> Compiled <<<<$(END)"
 
 $(LIBFT) :

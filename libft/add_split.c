@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_split.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcella-d <dcella-d@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 06:48:55 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/05/16 15:46:06 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/05/31 21:25:03 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	**add_split(char **split, char *new)
 	int		len;
 	char	**new_split;
 
-	if (split[0] == NULL)
+	if (split[0] == NULL || split == NULL)
 		return (ft_split(new, 32));
 	new_split = (char **) ft_calloc(sizeof(char *), (word_count(split) + 2));
 	if (!new_split)
