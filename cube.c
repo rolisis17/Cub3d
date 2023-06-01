@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mstiedl <mstiedl@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:34:49 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/05/31 21:33:17 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/06/01 15:22:13 by mstiedl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,30 @@ int	main(int ac, char **av)
 		fd = open(av[1], O_RDONLY);
 		if (fd == -1 || parse_file(fd))
 			return (0);
+		make_window();
+		// projection();
 		printf("seu cu");
 	}
+}
+
+void	projection(void)
+{
+	
+}
+
+void	make_window(void)
+{
+	t_vars		*vars;
+	
+	vars = (t_vars *)malloc (sizeof(t_vars));
+	if (!vars)
+		exit (0);
+	vars->mlx = mlx_init();
+	vars->win = mlx_new_window(vars->mlx, WIDTH, \
+	HEIGHT, "CUB3D");
+	mlx_hook(vars->win, 2, 1L << 0, keys, vars);
+	mlx_hook(vars->win, 17, 1L << 2, close_win, vars);
+	mlx_loop(vars->mlx);
 }
 
 int	parse_file(int fd)
@@ -83,6 +105,6 @@ int	filelen(char **file)
 
 	f = -1;
 	while (file[++f])
-		printf("%s", file[f]);
+		printf("%s\n", file[f]);
 	return (f);
 }

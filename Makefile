@@ -1,4 +1,4 @@
-SRC = cube.c
+SRC = cube.c exit.c
 BIN = objs
 OBJ = $(SRC:%.c=${BIN}/%.o)
 NAME = cube
