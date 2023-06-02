@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcella-d <dcella-d@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 11:01:26 by dcella-d          #+#    #+#             */
-/*   Updated: 2022/11/15 12:43:23 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/06/01 17:26:55 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	size_t	f;
+	int	f;
 
 	f = 0;
 	while (s[f] && (char)s[f] != (char)c)

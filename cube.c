@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mstiedl <mstiedl@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:34:49 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/06/01 15:22:13 by mstiedl          ###   ########.fr       */
+/*   Updated: 2023/06/02 16:14:13 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	main(int ac, char **av)
 {
+	char	**map;
 	int	fd;
 
 	fd = 0;
@@ -22,18 +23,20 @@ int	main(int ac, char **av)
 	if (av[1])
 	{
 		fd = open(av[1], O_RDONLY);
-		if (fd == -1 || parse_file(fd))
-			return (0);
+		if (fd == -1 || parse_file(fd, &map))
+		{
+			if (printf("Error 404: SUCK ME!"))
+				return (0);
+		}
 		make_window();
 		// projection();
-		printf("seu cu");
 	}
 }
 
-void	projection(void)
-{
+// void	projection(void)
+// {
 	
-}
+// }
 
 void	make_window(void)
 {
@@ -50,12 +53,16 @@ void	make_window(void)
 	mlx_loop(vars->mlx);
 }
 
-int	parse_file(int fd)
+int	parse_file(int fd, char ***file)
 {
-	char	**file;
+	char	**new;
 
-	file = read_file(fd);
-	if (check_walls(file))
+	*(file) = read_file(fd);
+	new = make_new_map(*(file), find_max_len(*(file)));
+	int f = -1;
+	while (new[++f])
+		printf("%s\n", new[f]);
+	if (check_walls(new))
 		return (1);
 	return (0);
 }
@@ -72,6 +79,8 @@ char	**read_file(int fd)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
+		if (check_nl(line))
+			line[ft_strlen(line) - 1] = '\0';
 		file = add_split(file, line);
 		free (line);
 	}
@@ -83,28 +92,30 @@ int	check_walls(char **file)
 	int	f;
 	int	u;
 
-	f = -1;
-	u = filelen(file);
-	while (file[0][++f] && file[u][f])
+	f = 0;
+	u = word_count(file);
+	if (search_line(file[0], '1') || search_line(file[u - 1], '1'))
+		return (1);
+	while (file[++f + 1])
 	{
-		if (file[0][f] != '1' || file[u][f] != '1')
-			return (1);
-	}
-	f = -1;
-	while (file[++f])
-	{
-		if (file[f][0] != '1' || file[f][ft_strlen(file[f])] != '1')
+		if (file[f][0] != '1' || file[f][ft_strlen(file[f]) - 1] != '1')
 			return (1);
 	}
 	return (0);
 }
 
-int	filelen(char **file)
+int	search_line(char *line, int c)
 {
 	int	f;
 
 	f = -1;
-	while (file[++f])
-		printf("%s\n", file[f]);
-	return (f);
+	while (line[++f])
+		if (line[f] != c)
+			return (1);
+	return (0);
 }
+
+
+
+//int	check_player() //need to check where is the player and if it is "N", "S", "W" or "O";
+//int	map_len() //need to return the maps len.

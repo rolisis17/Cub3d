@@ -6,7 +6,7 @@
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:14:30 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/05/31 19:07:13 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/06/02 15:30:25 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		ft_isalpha(int c);
 
 int		ft_isascii(int c);
 
-size_t	ft_strlen(const char *str);
+int		ft_strlen(const char *str);
 
 int		ft_isdigit(int c);
 
@@ -201,5 +201,7 @@ void	freelist(t_store *list);
 void	free_check(void *freeable);
 
 void	freesplit(char **splited);
+
+int		ft_strlen_t(const char *s);
 
 #endif

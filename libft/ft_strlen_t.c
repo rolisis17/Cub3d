@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_strlen_t.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcella-d <dcella-d@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/17 11:52:45 by dcella-d          #+#    #+#             */
-/*   Updated: 2022/11/17 18:07:31 by dcella-d         ###   ########.fr       */
+/*   Created: 2023/06/02 15:28:41 by dcella-d          #+#    #+#             */
+/*   Updated: 2023/06/02 15:29:47 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize(t_list *lst)
+int	ft_strlen_t(const char *s)
 {
-	size_t	f;
+	int	i;
 
-	f = 1;
-	if (!lst)
+	i = 0;
+	if (s == NULL)
 		return (0);
-	while (lst->next != NULL)
+	while (s[i])
 	{
-		lst = lst->next;
-		f++;
+		if (s[i] == '\t')
+			i += 4;
+		else
+			i++;
 	}
-	return (f);
+	return (i);
 }

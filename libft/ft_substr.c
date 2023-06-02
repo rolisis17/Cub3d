@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcella-d <dcella-d@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 12:22:57 by dcella-d          #+#    #+#             */
-/*   Updated: 2022/11/14 15:51:54 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/06/01 17:29:01 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*sub;
 
-	if (((len > ft_strlen(s)) && (start > ft_strlen(s))) \
-	|| (start > ft_strlen(s)))
+	if (((len > (size_t)ft_strlen(s)) && (start > (size_t)ft_strlen(s))) \
+	|| (start > (size_t)ft_strlen(s)))
 		len = 0;
-	if (len >= ft_strlen(s) && (ft_strlen(s) > start))
-		len = ft_strlen(s) - start;
+	if (len >= (size_t)ft_strlen(s) && ((size_t)ft_strlen(s) > start))
+		len = (size_t)ft_strlen(s) - start;
 	sub = ft_calloc(len + 1, sizeof(char));
 	if (!sub)
 		return (NULL);
-	if (start < ft_strlen(s))
+	if (start < (size_t)ft_strlen(s))
 		ft_strlcpy(sub, s + start, len + 1);
 	return (sub);
 }
