@@ -9,8 +9,8 @@
 # include <math.h>
 # include <stdlib.h>
 
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 1080
+# define HEIGHT 640
 
 typedef struct s_img
 {
@@ -79,16 +79,12 @@ typedef struct s_vars
 }				t_vars;
 
 char	**read_file(int fd);
-void	make_window(void);
-<<<<<<< HEAD
+void	make_window(char **map);
 void	data_init(t_vars *vars);
-=======
-
 //parse
 int		parse_file(int fd, char ***file);
 int		check_walls(char **file);
 int		search_line(char *line, int c);
-
 //update map
 char	*strpp(char *line, int len, int c);
 char	*make_new_line(char *line, int max_len);
@@ -96,7 +92,6 @@ int		find_max_len(char **file);
 char	**make_new_map(char **file, int max_len);
 int		check_nl(char *line);
 
->>>>>>> 97b62c33f2e40c84d993e92825e2dfba24882d34
 //exit
 int	close_win(t_vars *vars);
 int	keys(int keycode, t_vars *vars);

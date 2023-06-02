@@ -6,7 +6,7 @@
 /*   By: mstiedl <mstiedl@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 15:32:23 by mstiedl           #+#    #+#             */
-/*   Updated: 2023/06/02 16:40:06 by mstiedl          ###   ########.fr       */
+/*   Updated: 2023/06/02 21:32:38 by mstiedl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	raycast(float ray_angle, t_vars *vars)
 	{
 		ray->ray_x += ray->raydir_x;
 		ray->ray_y += ray->raydir_y;
-		// printf("HERE\n");
+		printf("HERE\nvalue x:%i\nvalue y:%i\n", (int)ray->ray_x, (int)ray->ray_y);
 		if (ray->ray_x < 0 || ray->ray_x >= vars->data->map_w || ray->ray_y < 0 || ray->ray_y >= vars->data->map_h)
 		{
 			ray->hit = 1;
@@ -83,9 +83,9 @@ void	draw_wall(float distance, t_vars *vars, float x)
 void	draw_line(t_img *img, float x, int start, int end)
 {
 	struct s_line	line;
-	int				i;
+	// int				i;
 
-	i = 0;
+	// i = 0;
 	line = draw_line_two(x, start, end);
 	while (line.x != end || line.y != end)
 	{

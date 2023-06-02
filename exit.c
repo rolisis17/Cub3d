@@ -6,7 +6,7 @@
 /*   By: mstiedl <mstiedl@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 15:05:43 by mstiedl           #+#    #+#             */
-/*   Updated: 2023/06/01 15:11:10 by mstiedl          ###   ########.fr       */
+/*   Updated: 2023/06/02 21:23:28 by mstiedl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	close_win(t_vars *vars)
 {
 	mlx_destroy_window(vars->mlx, vars->win);
-	close (vars->fd);
+	// close (vars->fd);
 	free(vars);
 	exit (0);
 }

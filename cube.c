@@ -6,7 +6,7 @@
 /*   By: mstiedl <mstiedl@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:34:49 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/06/02 16:54:03 by mstiedl          ###   ########.fr       */
+/*   Updated: 2023/06/02 21:26:02 by mstiedl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ int	main(int ac, char **av)
 			if (printf("Error 404: SUCK ME!"))
 				return (0);
 		}
-		make_window();
+		make_window(map);
 	}
 }
 
-void	make_window(void)
+void	make_window(char **map)
 {
 	t_vars		*vars;
 	t_img		img;
@@ -40,6 +40,7 @@ void	make_window(void)
 	vars = (t_vars *)malloc (sizeof(t_vars));
 	if (!vars)
 		exit (0);
+	vars->map = map;
 	vars->mlx = mlx_init();
 	vars->win = mlx_new_window(vars->mlx, WIDTH, HEIGHT, "CUB3D");
 	img.img = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
@@ -50,24 +51,6 @@ void	make_window(void)
 	mlx_hook(vars->win, 2, 1L << 0, keys, vars);
 	mlx_hook(vars->win, 17, 1L << 2, close_win, vars);
 	mlx_loop(vars->mlx);
-}
-
-void	data_init(t_vars *vars)
-{
-	vars->data = (t_pro *)malloc (sizeof(t_pro));
-	if (!vars->data)
-		exit(EXIT_FAILURE);
-	vars->data->pos_x = 5.0; //get_pos(); //dracsis making, put together
-	vars->data->pos_y = 4.0; //get_pos(); //dracsis making, put together
-	vars->data->dir_x = 0.0; //get_dir();
-	vars->data->dir_y = 0.0; //get_dir(); // make based on NESW
-	vars->data->map_w = 6; ///get_mapsize();
-	vars->data->map_h = 5; //get_mapsize();
-	vars->data->plane_x = 0.0;
-	vars->data->plane_y = 0.66;
-	// vars->data->time = 0;
-	// vars->data->old_time = 0;
-	// vars->data->distance 0.0;
 }
 
 void	data_init(t_vars *vars)
