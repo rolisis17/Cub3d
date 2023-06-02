@@ -1,4 +1,4 @@
-SRC = cube.c exit.c projection.c
+SRC = cube.c exit.c projection.c update_map.c
 BIN = objs
 OBJ = $(SRC:%.c=${BIN}/%.o)
 NAME = cube
