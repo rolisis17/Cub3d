@@ -6,7 +6,7 @@
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:14:30 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/06/01 17:28:33 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/06/02 15:30:25 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,5 +201,7 @@ void	freelist(t_store *list);
 void	free_check(void *freeable);
 
 void	freesplit(char **splited);
+
+int		ft_strlen_t(const char *s);
 
 #endif

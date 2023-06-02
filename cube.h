@@ -21,16 +21,19 @@ typedef struct s_vars {
 }				t_vars;
 
 char	**read_file(int fd);
-int		check_walls(char **file);
-int		parse_file(int fd);
 void	make_window(void);
-int	search_line(char *line, int c);
-int	check_nl(char *line);
+
+//parse
+int		parse_file(int fd, char ***file);
+int		check_walls(char **file);
+int		search_line(char *line, int c);
+
+//update map
 char	*strpp(char *line, int len, int c);
 char	*make_new_line(char *line, int max_len);
-int	find_max_len(char **file);
+int		find_max_len(char **file);
 char	**make_new_map(char **file, int max_len);
-char	*strpp(char *line, int len, int c);
+int		check_nl(char *line);
 
 //exit
 int	close_win(t_vars *vars);

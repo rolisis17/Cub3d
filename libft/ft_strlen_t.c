@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   word_count.c                                       :+:      :+:    :+:   */
+/*   ft_strlen_t.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/15 06:48:55 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/06/02 16:12:00 by dcella-d         ###   ########.fr       */
+/*   Created: 2023/06/02 15:28:41 by dcella-d          #+#    #+#             */
+/*   Updated: 2023/06/02 15:29:47 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	word_count(char **split)
+int	ft_strlen_t(const char *s)
 {
 	int	i;
 
 	i = 0;
-	while (split[i])
-		i++;
+	if (s == NULL)
+		return (0);
+	while (s[i])
+	{
+		if (s[i] == '\t')
+			i += 4;
+		else
+			i++;
+	}
 	return (i);
 }
