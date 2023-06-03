@@ -23,35 +23,27 @@ typedef struct s_img
 
 typedef struct s_projection
 {
-	float	pos_x;
-	float	pos_y;  //x and y start position
-	float	dir_x;
-	float	dir_y; //initial direction vector
-  	float	plane_x;
-	float	plane_y; //the 2d raycaster version of camera plane
-	float	time; //time of current frame
-	float	old_time; //time of previous frame
-	float	camera_x;
-	int 	map_w;
-	int 	map_h;
-}				t_pro;
-
-typedef struct s_raycasting
-{
-	float	ray_x;
-	float	ray_y;
-	float	raydir_x;
-	float	raydir_y;
-	float	distance;
+	double	camera_x;
+	double	raydir_x;
+	double	raydir_y;
+	double	delta_x;
+	double	delta_y;
+	int		map_x;
+	int		map_y;
+	double	ray_x;
+	double	ray_y;
+	double	distance;
 	int		hit;
-}				t_ray;
-
-typedef struct s_walls
-{
-	int	wall_h;
-	int wall_s;
-	int wall_e;
-}				t_wall;
+	double	wall_dist;
+	double	side_distx;
+	double	side_disty;
+	int		step_x;
+	int		step_y;
+	int		side;
+	int		wall_h;
+	int		wall_s;
+	int		wall_e;
+}				t_pro;
 
 struct	s_line
 {
@@ -71,16 +63,23 @@ typedef struct s_vars
 	void		*win;
 	char		**map;
 	t_img		*img;
-	// t_dotfile	*file;
-	// t_data		*img;
-	// t_calc		calc;
-	t_pro		*data;
 	int			fd;
+	double	pos_x;
+	double	pos_y;  //x and y start position
+	int 	map_w;
+	int 	map_h;
+	char	dir;
+	double	dir_x;
+	double	dir_y; //initial direction vector
+  	double	plane_x;
+	double	plane_y; //the 2d raycaster version of camera plane
+	double	time; //time of current frame
+	double	old_time; //time of previous frame
 }				t_vars;
 
 char	**read_file(int fd);
 void	make_window(char **map);
-void	data_init(t_vars *vars);
+void	data_init(t_vars *vars, char **map);
 //parse
 int		parse_file(int fd, char ***file);
 int		check_walls(char **file);
@@ -97,11 +96,10 @@ int	close_win(t_vars *vars);
 int	keys(int keycode, t_vars *vars);
 //projection
 void	projection(t_vars *vars);
-void	raycast(float ray_angle, t_vars *vars);
-void	draw_wall(float distance, t_vars *vars, float x);
-void	draw_line(t_img *img, float x, int start, int end);
-struct s_line	draw_line_two(float x, int start, int end);
+void	step_n_side(t_pro *ray, t_vars *vars);
+void	dda_algo(t_pro *ray, t_vars *vars);
+void	draw_line(t_pro *ray, t_vars *vars, int x);
 void	pixel_put(t_img *img, int x, int y, int colour);
-int	my_ternery(int a, int b, int yes, int no);
+double	my_ternery(double a, double b, double yes, double no);
 
 #endif

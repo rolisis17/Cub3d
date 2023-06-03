@@ -6,7 +6,7 @@
 /*   By: mstiedl <mstiedl@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:34:49 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/06/02 21:26:02 by mstiedl          ###   ########.fr       */
+/*   Updated: 2023/06/03 19:33:43 by mstiedl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ int	main(int ac, char **av)
 			if (printf("Error 404: SUCK ME!"))
 				return (0);
 		}
+		int f = -1;
+		printf("THIS\n");
+		while (map[++f])
+			printf("%s\n", map[f]);
 		make_window(map);
 	}
 }
@@ -40,36 +44,32 @@ void	make_window(char **map)
 	vars = (t_vars *)malloc (sizeof(t_vars));
 	if (!vars)
 		exit (0);
-	vars->map = map;
+	data_init(vars, map);
 	vars->mlx = mlx_init();
 	vars->win = mlx_new_window(vars->mlx, WIDTH, HEIGHT, "CUB3D");
 	img.img = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.len, &img.edn);
 	vars->img = &img;
-	data_init(vars);
 	projection(vars);
 	mlx_hook(vars->win, 2, 1L << 0, keys, vars);
 	mlx_hook(vars->win, 17, 1L << 2, close_win, vars);
 	mlx_loop(vars->mlx);
 }
 
-void	data_init(t_vars *vars)
+void data_init(t_vars *vars, char **map)
 {
-	vars->data = (t_pro *)malloc (sizeof(t_pro));
-	if (!vars->data)
-		exit(EXIT_FAILURE);
-	vars->data->pos_x = 5.0; //get_pos(); //dracsis making, put together
-	vars->data->pos_y = 4.0; //get_pos(); //dracsis making, put together
-	vars->data->dir_x = 0.0; //get_dir();
-	vars->data->dir_y = 0.0; //get_dir(); // make based on NESW
-	vars->data->map_w = 6; ///get_mapsize();
-	vars->data->map_h = 5; //get_mapsize();
-	vars->data->plane_x = 0.0;
-	vars->data->plane_y = 0.66;
-	// vars->data->time = 0;
-	// vars->data->old_time = 0;
-	// vars->data->distance 0.0;
+	vars->map = map;
+	vars->dir_x = 0;
+	vars->dir_y = 1;
+	vars->plane_x = (0.66 * vars->dir_y) * 1;
+	vars->plane_y = (0.66 * vars->dir_x) * 1;
+	vars->pos_x = 5;
+	vars->pos_y = 4;
+	vars->time = 0;
+	vars->old_time = 0;
 }
+
+// South = x -1, y 0 // maybe
 
 int	parse_file(int fd, char ***file)
 {
@@ -132,8 +132,6 @@ int	search_line(char *line, int c)
 			return (1);
 	return (0);
 }
-
-
 
 //int	check_player() //need to check where is the player and if it is "N", "S", "W" or "O";
 //int	map_len() //need to return the maps len.
