@@ -6,7 +6,7 @@
 /*   By: mstiedl <mstiedl@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 15:32:23 by mstiedl           #+#    #+#             */
-/*   Updated: 2023/06/02 21:32:38 by mstiedl          ###   ########.fr       */
+/*   Updated: 2023/06/03 13:45:58 by mstiedl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,46 +76,21 @@ void	draw_wall(float distance, t_vars *vars, float x)
 		wall->wall_s = 0;
 	if (wall->wall_e >= HEIGHT)
 		wall->wall_e = HEIGHT -1;
+	printf("x= %i, wall start= %i, wall end= %i\n", (int)x, wall->wall_s, wall->wall_e);
 	draw_line(vars->img, x, wall->wall_s, wall->wall_e);
 	
 }
 
 void	draw_line(t_img *img, float x, int start, int end)
 {
-	struct s_line	line;
-	// int				i;
+	int i;
 
-	// i = 0;
-	line = draw_line_two(x, start, end);
-	while (line.x != end || line.y != end)
+	i = -1;
+	while (++i < HEIGHT)
 	{
-		pixel_put(img, line.x, line.y, 0x00FFFC00);
-		line.e = line.err;
-		if (line.e > -line.dx)
-		{
-			line.err -= line.dy;
-			line.x += line.endx;
-		}
-		if (line.e < line.dy)
-		{
-			line.err += line.dx;
-			line.y += line.endy;
-		}
+		if (i >= start && i <= end)
+			pixel_put(img, x, i, 0x00FFFC00);
 	}
-}
-
-struct s_line	draw_line_two(float x, int start, int end)
-{
-	struct s_line	line;
-
-	line.x = x;
-	line.y = start;
-	line.dx = abs((int)x - (int)line.x);
-	line.dy = abs((int)end - (int)line.y);
-	line.endx = my_ternery(x, line.x, 1, -1);
-	line.endy = my_ternery(end, line.y, 1, -1);
-	line.err = (my_ternery(line.dx, line.dy, line.dx, -line.dy) / 2);
-	return (line);
 }
 
 void	pixel_put(t_img *img, int x, int y, int colour)
