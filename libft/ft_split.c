@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcella-d <dcella-d@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 14:39:16 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/02/23 13:20:43 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/06/02 16:53:58 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	m_str(char const *s, char **split, char c)
+static int	m_str(char *s, char **split, char c)
 {
 	int	words;
 	int	leng;
