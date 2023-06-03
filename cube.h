@@ -70,6 +70,9 @@ typedef struct s_vars
 	void		*mlx;
 	void		*win;
 	char		**map;
+	int			pos_x;
+	int			pos_y;
+	char		dir;
 	t_img		*img;
 	// t_dotfile	*file;
 	// t_data		*img;
@@ -85,6 +88,11 @@ void	data_init(t_vars *vars);
 int		parse_file(int fd, char ***file);
 int		check_walls(char **file);
 int		search_line(char *line, int c);
+int		parse_full(char **file);
+int		check_map(char *line, int f);
+int		player_pos(char dir, int pos_col, int pos_row, t_vars *vars);
+int		check_maps_start(char *line);
+
 //update map
 char	*strpp(char *line, int len, int c);
 char	*make_new_line(char *line, int max_len);
