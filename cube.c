@@ -6,7 +6,7 @@
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:34:49 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/06/03 21:39:16 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/06/05 18:12:35 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ int	main(int ac, char **av)
 			if (printf("Error 404: SUCK ME!"))
 				return (0);
 		}
-		int f = -1;
-		printf("THIS\n");
-		while (map[++f])
-			printf("%s\n", map[f]);
+		// printf("THIS\n");
+		// int f = -1;
+		// while (map[++f])
+		// 	printf("%s\n", map[f]);
 		make_window(map);
 	}
 	freedom("s", map);
@@ -99,6 +99,8 @@ int	parse_full(char **file)
 	while (file[++f])
 		if (check_map(file[f], f))
 			return (1);
+	if (player_pos(0, -1, 0, NULL))
+		return (1);
 	return (0);
 }
 
@@ -139,12 +141,14 @@ int	player_pos(char dir, int pos_col, int pos_row, t_vars *vars)
 		vars->pos_y = pos_row;
 		vars->dir = dir;
 	}
-	if (!one_dir && !vars)
+	if (dir && !vars)
 		one_dir = dir;
-	if (!pos_col && !vars)
+	if (pos_col && !vars)
 		col = pos_col;
-	if (!pos_row && !vars)
+	if (pos_row && !vars)
 		row = pos_row;
+	if (one_dir && pos_col == -1)
+		return (0);
 	return (1);
 }
 

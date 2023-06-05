@@ -62,9 +62,6 @@ typedef struct s_vars
 	void		*mlx;
 	void		*win;
 	char		**map;
-	int			pos_x;
-	int			pos_y;
-	char		dir;
 	t_img		*img;
 	int			fd;
 	double	pos_x;
