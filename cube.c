@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mstiedl <mstiedl@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:34:49 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/06/03 21:39:16 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/06/05 22:15:13 by mstiedl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,11 @@ void data_init(t_vars *vars, char **map)
 {
 	vars->map = map;
 	vars->dir_x = 0;
-	vars->dir_y = 1;
+	vars->dir_y = -1;
 	vars->plane_x = (0.66 * vars->dir_y) * 1;
 	vars->plane_y = (0.66 * vars->dir_x) * 1;
-	vars->pos_x = 5;
-	vars->pos_y = 4;
+	vars->pos_x = 3;
+	vars->pos_y = 8;
 	vars->time = 0;
 	vars->old_time = 0;
 }
@@ -129,9 +129,9 @@ int	check_map(char *line, int row)
 
 int	player_pos(char dir, int pos_col, int pos_row, t_vars *vars)
 {
-	static char	one_dir;
-	static int	col;
-	static int	row;
+	// static char	one_dir;
+	// static int	col;
+	// static int	row;
 
 	if (vars)
 	{
@@ -139,12 +139,12 @@ int	player_pos(char dir, int pos_col, int pos_row, t_vars *vars)
 		vars->pos_y = pos_row;
 		vars->dir = dir;
 	}
-	if (!one_dir && !vars)
-		one_dir = dir;
-	if (!pos_col && !vars)
-		col = pos_col;
-	if (!pos_row && !vars)
-		row = pos_row;
+	// if (!one_dir && !vars)
+	// 	one_dir = dir;
+	// if (!pos_col && !vars)
+	// 	col = pos_col;
+	// if (!pos_row && !vars)
+	// 	row = pos_row;
 	return (1);
 }
 

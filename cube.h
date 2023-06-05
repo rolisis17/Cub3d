@@ -11,6 +11,12 @@
 
 # define WIDTH 1080
 # define HEIGHT 640
+# define W 119 
+# define A 97
+# define S 115
+# define D 100
+# define LEFT 65361
+# define RIGHT 65363 
 
 typedef struct s_img
 {
@@ -67,11 +73,8 @@ typedef struct s_vars
 	char		dir;
 	t_img		*img;
 	int			fd;
-	double	pos_x;
-	double	pos_y;  //x and y start position
 	int 	map_w;
 	int 	map_h;
-	char	dir;
 	double	dir_x;
 	double	dir_y; //initial direction vector
   	double	plane_x;
@@ -102,6 +105,9 @@ int		check_nl(char *line);
 //exit
 int	close_win(t_vars *vars);
 int	keys(int keycode, t_vars *vars);
+void look_left(t_vars *vars);
+void look_right(t_vars *vars);
+void	move_player(t_vars *vars);
 //projection
 void	projection(t_vars *vars);
 void	step_n_side(t_pro *ray, t_vars *vars);
