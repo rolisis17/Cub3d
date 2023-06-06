@@ -6,7 +6,7 @@
 /*   By: mstiedl <mstiedl@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:34:49 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/06/05 22:20:12 by mstiedl          ###   ########.fr       */
+/*   Updated: 2023/06/06 15:39:15 by mstiedl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,34 @@ void	make_window(char **map)
 	img.img = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.len, &img.edn);
 	vars->img = &img;
+	texture_init(vars);
 	projection(vars);
 	mlx_hook(vars->win, 2, 1L << 0, keys, vars);
 	mlx_hook(vars->win, 17, 1L << 2, close_win, vars);
 	mlx_loop(vars->mlx);
+}
+
+void	texture_init(t_vars *vars)
+{
+	int	i;
+	char *textures[4];
+	
+	textures[0] = "./textures/North_Wall.xpm";
+	textures[1] = "./textures/East_Wall.xpm";
+	textures[2] = "./textures/South_Wall.xpm";
+	textures[3] = "./textures/West_Wall.xpm";
+
+	i = -1;
+	vars->wall = (t_wall *)ft_calloc (sizeof(t_wall), 4);
+	if (!vars->wall)
+		exit (0);
+	while (++i < 4)
+	{
+		vars->wall[i].img = mlx_xpm_file_to_image(vars->mlx, textures[i], &vars->wall[i].w, &vars->wall[i].h);
+		if (vars->wall[i].img == NULL)
+			exit(EXIT_FAILURE); // fix this shit
+		vars->wall[i].img->addr = mlx_get_data_addr(vars->wall[i].img, &vars->wall[i].img->bpp, &vars->wall[i].img->len, &vars->wall[i].img->edn);	
+	}
 }
 
 void data_init(t_vars *vars, char **map)
@@ -67,8 +91,10 @@ void data_init(t_vars *vars, char **map)
 	vars->dir_y = -1;
 	vars->plane_x = (0.66 * vars->dir_y) * 1;
 	vars->plane_y = (0.66 * vars->dir_x) * 1;
-	vars->pos_x = 3;
-	vars->pos_y = 8;
+	player_pos(0, 0, 0, vars);
+	printf("THis: dir: %c, col: %d, row: %d\n", vars->dir, vars->pos_x, vars->pos_y);
+	// vars->pos_x = 3;
+	// vars->pos_y = 8;
 	vars->time = 0;
 	vars->old_time = 0;
 }
@@ -81,9 +107,9 @@ int	parse_file(int fd, char ***file)
 	if (check_walls(*(file)))
 		return (1);
 	*(file) = make_new_map(*(file), find_max_len(*(file)));
-	// int f = -1;
-	// while ((*file)[++f])
-	// 	printf("%s\n", (*file)[f]);
+	int f = -1;
+	while ((*file)[++f])
+		printf("%s\n", (*file)[f]);
 	if (parse_full(*(file)))
 		return (1);
 	return (0);
@@ -100,7 +126,10 @@ int	parse_full(char **file)
 		if (check_map(file[f], f))
 			return (1);
 	if (player_pos(0, -1, 0, NULL))
+	{
+		printf("FUCK\n");
 		return (1);
+	}
 	return (0);
 }
 
@@ -131,24 +160,28 @@ int	check_map(char *line, int row)
 
 int	player_pos(char dir, int pos_col, int pos_row, t_vars *vars)
 {
-	// static char	one_dir;
-	// static int	col;
-	// static int	row;
-
+	static char	one_dir;
+	static int	col;
+	static int	row;
+	
 	if (vars)
 	{
-		vars->pos_x = pos_col;
-		vars->pos_y = pos_row;
-		vars->dir = dir;
+		// if (one_dir)
+		// 	printf("dir:%c\n", one_dir);
+		// printf("HERE\n");
+		vars->pos_x = col;
+		vars->pos_y = row;
+		vars->dir = one_dir;
+		return (0);
 	}
-	if (dir && !vars)
-		one_dir = dir;
-	if (pos_col && !vars)
-		col = pos_col;
-	if (pos_row && !vars)
-		row = pos_row;
 	if (one_dir && pos_col == -1)
 		return (0);
+	if (!one_dir && dir && !vars)
+		one_dir = dir;
+	if (!col && pos_col && !vars)
+		col = pos_col;
+	if (!row &&pos_row && !vars)
+		row = pos_row;
 	return (1);
 }
 
