@@ -72,17 +72,17 @@ typedef struct s_vars
 	t_wall		*wall;
 	t_img		*img;
 	int			fd;
-	int 	map_w;
-	int 	map_h;
-	int		pos_x;
-	int		pos_y;
-	char	dir;
-	double	dir_x;
-	double	dir_y; //initial direction vector
-  	double	plane_x;
-	double	plane_y; //the 2d raycaster version of camera plane
-	double	time; //time of current frame
-	double	old_time; //time of previous frame
+	int 		map_w;
+	int 		map_h;
+	double		pos_x;
+	double		pos_y;
+	char		dir;
+	double		dir_x;
+	double		dir_y; //initial direction vector
+  	double		plane_x;
+	double		plane_y; //the 2d raycaster version of camera plane
+	double		time; //time of current frame
+	double		old_time; //time of previous frame
 }				t_vars;
 
 char	**read_file(int fd);
@@ -111,6 +111,11 @@ int	keys(int keycode, t_vars *vars);
 void look_left(t_vars *vars);
 void look_right(t_vars *vars);
 void	move_player(t_vars *vars);
+void	move_player_back(t_vars *vars);
+void	move_player_left(t_vars *vars);
+void	move_player_right(t_vars *vars);
+
+double	get_angle(int key);
 //projection
 void	projection(t_vars *vars);
 void	step_n_side(t_pro *ray, t_vars *vars);

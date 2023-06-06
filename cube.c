@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mstiedl <mstiedl@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:34:49 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/06/06 15:39:15 by mstiedl          ###   ########.fr       */
+/*   Updated: 2023/06/06 19:21:50 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void data_init(t_vars *vars, char **map)
 	vars->plane_x = (0.66 * vars->dir_y) * 1;
 	vars->plane_y = (0.66 * vars->dir_x) * 1;
 	player_pos(0, 0, 0, vars);
-	printf("THis: dir: %c, col: %d, row: %d\n", vars->dir, vars->pos_x, vars->pos_y);
+	printf("THis: dir: %c, col: %f, row: %f\n", vars->dir, vars->pos_x, vars->pos_y);
 	// vars->pos_x = 3;
 	// vars->pos_y = 8;
 	vars->time = 0;
