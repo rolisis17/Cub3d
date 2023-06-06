@@ -6,13 +6,13 @@
 /*   By: mstiedl <mstiedl@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 17:52:02 by mstiedl           #+#    #+#             */
-/*   Updated: 2023/06/05 18:05:12 by mstiedl          ###   ########.fr       */
+/*   Updated: 2023/06/06 20:39:11 by mstiedl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-int	get_dir(int arg)
+int	get_dir(char player_dir, int arg)
 {
 	if (arg == 0 && (player_dir == 'N' || player_dir == 'S'))
 		return (0);
@@ -26,4 +26,10 @@ int	get_dir(int arg)
 		return (1);
 	if (arg == 1 && player_dir == 'N')
 		return (-1);
+	return (0);
+}
+
+int	create_trgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
 }

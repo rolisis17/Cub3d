@@ -66,16 +66,18 @@ typedef struct s_wall
 
 typedef struct s_vars
 {
-	void		*mlx;
-	void		*win;
-	char		**map;
-	t_wall		*wall;
-	t_img		*img;
-	int			fd;
+	void	*mlx;
+	void	*win;
+	char	**map;
+	t_wall	*wall;
+	t_img	*img;
+	int		fd;
+	int		roof;
+	int		floor;
 	int 	map_w;
 	int 	map_h;
-	int		pos_x;
-	int		pos_y;
+	double	pos_x;
+	double	pos_y;
 	char	dir;
 	double	dir_x;
 	double	dir_y; //initial direction vector
@@ -97,7 +99,9 @@ int		parse_full(char **file);
 int		check_map(char *line, int f);
 int		player_pos(char dir, int pos_col, int pos_row, t_vars *vars);
 int		check_maps_start(char *line);
-
+//player info
+int		get_dir(char player_dir, int arg);
+int		create_trgb(int t, int r, int g, int b);
 //update map
 char	*strpp(char *line, int len, int c);
 char	*make_new_line(char *line, int max_len);

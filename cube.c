@@ -6,7 +6,7 @@
 /*   By: mstiedl <mstiedl@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:34:49 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/06/06 15:39:15 by mstiedl          ###   ########.fr       */
+/*   Updated: 2023/06/06 20:44:36 by mstiedl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,15 @@ void	texture_init(t_vars *vars)
 void data_init(t_vars *vars, char **map)
 {
 	vars->map = map;
-	vars->dir_x = 0;
-	vars->dir_y = -1;
+	player_pos(0, 0, 0, vars);
+	// vars->dir_x = 0;
+	// vars->dir_y = -1;
+	vars->dir_x = get_dir(vars->dir, 0);
+	vars->dir_y = get_dir(vars->dir, 1);
+	vars->roof = create_trgb(0, 0, 255, 255);
+	vars->floor = create_trgb(0, 255, 0, 255);
 	vars->plane_x = (0.66 * vars->dir_y) * 1;
 	vars->plane_y = (0.66 * vars->dir_x) * 1;
-	player_pos(0, 0, 0, vars);
-	printf("THis: dir: %c, col: %d, row: %d\n", vars->dir, vars->pos_x, vars->pos_y);
-	// vars->pos_x = 3;
-	// vars->pos_y = 8;
 	vars->time = 0;
 	vars->old_time = 0;
 }
@@ -166,9 +167,6 @@ int	player_pos(char dir, int pos_col, int pos_row, t_vars *vars)
 	
 	if (vars)
 	{
-		// if (one_dir)
-		// 	printf("dir:%c\n", one_dir);
-		// printf("HERE\n");
 		vars->pos_x = col;
 		vars->pos_y = row;
 		vars->dir = one_dir;

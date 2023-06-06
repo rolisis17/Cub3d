@@ -6,7 +6,7 @@
 /*   By: mstiedl <mstiedl@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 13:52:14 by mstiedl           #+#    #+#             */
-/*   Updated: 2023/06/06 14:58:48 by mstiedl          ###   ########.fr       */
+/*   Updated: 2023/06/06 20:42:52 by mstiedl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	projection(t_vars *vars)
 	ray = (t_pro *)malloc (sizeof(t_pro));
 	if (!ray)
 		exit (EXIT_FAILURE);
+	// printf("player pos: x:%f, y:%f", vars->pos_x, vars->pos_y);
 	while (++x < WIDTH)
 	{
 		// printf("HERE\n");
@@ -121,6 +122,10 @@ void	draw_line(t_pro *ray, t_vars *vars, int x)
 			vars->wall[f].pos += step;
 			pixel_put(vars->img, x, i, get_colour(vars, f));
 		}
+		else if (i < HEIGHT / 2 && i < ray->wall_s)
+			pixel_put(vars->img, x, i, vars->roof);
+		else if (i < HEIGHT && i > ray->wall_e)
+			pixel_put(vars->img, x, i, vars->floor);
 	}
 }
 
