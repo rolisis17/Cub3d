@@ -6,7 +6,7 @@
 /*   By: mstiedl <mstiedl@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 13:52:14 by mstiedl           #+#    #+#             */
-/*   Updated: 2023/06/05 22:20:30 by mstiedl          ###   ########.fr       */
+/*   Updated: 2023/06/06 14:58:48 by mstiedl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,17 +104,61 @@ void dda_algo(t_pro *ray, t_vars *vars)
 
 void	draw_line(t_pro *ray, t_vars *vars, int x)
 {
-	int i;
+	int 	i;
+	int		f;
+	double	step;
 
 	i = -1;
+	f = get_face(ray);
+	texture_calc(ray, vars, f);
+	step = 1.0 * vars->wall[f].h / ray->wall_h;
+	vars->wall[f].pos = (ray->wall_s - HEIGHT / 2 + ray->wall_h / 2) * step;
 	while (++i <= HEIGHT)
 	{
 		if (i >= ray->wall_s && i <= ray->wall_e)
 		{
-			// printf("PIXELS %i\n", i);
-			pixel_put(vars->img, x, i, 0x009900FF);
+			vars->wall[f].tex_y = (int)vars->wall[f].pos;
+			vars->wall[f].pos += step;
+			pixel_put(vars->img, x, i, get_colour(vars, f));
 		}
 	}
+}
+
+int get_face(t_pro *ray)
+{
+	if (ray->side == 0)
+	{
+		if (ray->raydir_x > 0)
+			return (3);
+		return (1);
+	}
+	else
+	{
+		if (ray->raydir_y > 0)
+			return (2);
+		return (0);
+	}
+}
+
+unsigned int	get_colour(t_vars *vars, int f)
+{
+	// printf("HERE: x: %i, y: %i\n", vars->wall[f].tex_x, vars->wall[f].tex_y);
+	return (*(unsigned int *)(vars->wall[f].img->addr + (vars->wall[f].tex_y * \
+	vars->wall[f].img->len + vars->wall[f].tex_x * (vars->wall[f].img->bpp / 8))));
+}
+
+void	texture_calc(t_pro *ray, t_vars *vars, int f)
+{
+	if (ray->side == 0)
+		vars->wall[f].x = vars->pos_y + ray->wall_dist * ray->raydir_y;
+	else
+		vars->wall[f].x = vars->pos_x + ray->wall_dist * ray->raydir_x;
+	vars->wall[f].x -= floor(vars->wall[f].x);
+	vars->wall[f].tex_x = (int)(vars->wall[f].x * (double)vars->wall[f].w);
+	if (ray->side == 0 && ray->raydir_x > 0)
+		vars->wall[f].tex_x = vars->wall[f].w - vars->wall[f].tex_x - 1;
+	if (ray->side == 1 && ray->raydir_y < 0)
+		vars->wall[f].tex_x = vars->wall[f].w - vars->wall[f].tex_x - 1;
 }
 
 void	pixel_put(t_img *img, int x, int y, int colour)

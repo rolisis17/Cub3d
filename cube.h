@@ -16,7 +16,8 @@
 # define S 115
 # define D 100
 # define LEFT 65361
-# define RIGHT 65363 
+# define RIGHT 65363
+# define R_SPD 0.03
 
 typedef struct s_img
 {
@@ -51,27 +52,31 @@ typedef struct s_projection
 	int		wall_e;
 }				t_pro;
 
-struct	s_line
+typedef struct s_wall
 {
-	int	x;
-	int	y;
-	int	dx;
-	int	dy;
-	int	endx;
-	int	endy;
-	int	e;
-	int	err;
-};
+	t_img	*img;
+	double	x;
+	double	y;
+	int		tex_x;
+	int		tex_y;
+	double	pos;
+	int		h;
+	int		w;
+}				t_wall;
 
 typedef struct s_vars
 {
 	void		*mlx;
 	void		*win;
 	char		**map;
+	t_wall		*wall;
 	t_img		*img;
 	int			fd;
 	int 	map_w;
 	int 	map_h;
+	int		pos_x;
+	int		pos_y;
+	char	dir;
 	double	dir_x;
 	double	dir_y; //initial direction vector
   	double	plane_x;
@@ -83,6 +88,7 @@ typedef struct s_vars
 char	**read_file(int fd);
 void	make_window(char **map);
 void	data_init(t_vars *vars, char **map);
+void	texture_init(t_vars *vars);
 //parse
 int		parse_file(int fd, char ***file);
 int		check_walls(char **file);
@@ -112,5 +118,8 @@ void	dda_algo(t_pro *ray, t_vars *vars);
 void	draw_line(t_pro *ray, t_vars *vars, int x);
 void	pixel_put(t_img *img, int x, int y, int colour);
 double	my_ternery(double a, double b, double yes, double no);
+void	texture_calc(t_pro *ray, t_vars *vars, int f);
+unsigned int	get_colour(t_vars *vars, int f);
+int get_face(t_pro *ray);
 
 #endif
