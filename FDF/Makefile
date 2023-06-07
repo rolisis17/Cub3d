@@ -94,7 +94,7 @@ On_IWhite=\033[0;107m
 $(NAME): $(OBJ)
 	@make $(LIBFT)
 	@make bonus $(LIBFT)
-	@$(CC) -fsanitize=address $(OBJ) -Lmlx_linux -lmlx_Linux -Llibft -lft -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -fPIE -o $(NAME)
+	@$(CC) $(OBJ) -Lmlx_linux -lmlx_Linux -Llibft -lft -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -fPIE -o $(NAME)
 	@echo "$(On_IBlack)$(IWhite)Done."
 
 all: $(NAME)

@@ -35,8 +35,8 @@ $(NAME): $(OBJS) $(BON_OBJ) $(GNL_OBJ) $(PRINTF_OBJ) $(MINI_OBJS)
 
 all: $(NAME)
 
-#bonus: $(BON_OBJ) $(GNL_OBJ) $(PRINTF_OBJ)
-#	@$(LIBC) $(NAME) $(BON_OBJ) $(GNL_OBJ) $(PRINTF_OBJ)
+bonus: $(BON_OBJ) $(GNL_OBJ) $(PRINTF_OBJ)
+	@$(LIBC) $(NAME) $(BON_OBJ) $(GNL_OBJ) $(PRINTF_OBJ)
 
 clean: 
 	@$(RM) $(OBJS) $(BON_OBJ) $(GNL_OBJ) $(PRINTF_OBJ) $(MINI_OBJS)

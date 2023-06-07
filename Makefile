@@ -36,7 +36,7 @@ $(BIN)/%.o : %.c
 	@$(CC) $(FLAGS) -c $< -o $@
 
 valgrind :  $(NAME)
-	@valgrind --leak-check=full --show-leak-kinds=all --suppressions=suppress ./$(NAME)
+	@valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) map1.cub
 
 clean :
 	@$(RM) $(BIN)

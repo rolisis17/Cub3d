@@ -6,7 +6,7 @@
 /*   By: mstiedl <mstiedl@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:34:49 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/06/07 14:33:36 by mstiedl          ###   ########.fr       */
+/*   Updated: 2023/06/07 18:01:50 by mstiedl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,11 @@ int	main(int ac, char **av)
 
 	fd = 0;
 	map = NULL;
-	if (av[2] && ac) // make error messages for too many arg and not enough arg
+	if (av[2] && ac)
+	{
+		ft_putendl_fd("Wrong number of arguments", 2);
 		return (1);
+	}
 	if (av[1])
 	{
 		fd = open(av[1], O_RDONLY);
@@ -34,7 +37,7 @@ int	main(int ac, char **av)
 		close(fd);
 		make_window(map);
 	}
-	freedom("s", map);
+	// freedom("s", map);
 }
 
 void	make_window(char **map)

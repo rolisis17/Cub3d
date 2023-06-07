@@ -6,7 +6,7 @@
 /*   By: mstiedl <mstiedl@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 13:52:14 by mstiedl           #+#    #+#             */
-/*   Updated: 2023/06/07 14:23:09 by mstiedl          ###   ########.fr       */
+/*   Updated: 2023/06/07 18:31:05 by mstiedl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	projection(t_vars *vars)
 		if (ray->wall_e > HEIGHT)
 			ray->wall_e = HEIGHT;
 		draw_line(ray, vars, x);
-		ray->hit = 0;
 	}
 	free(ray);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img->img, 0, 0);
@@ -72,6 +71,7 @@ void	step_n_side(t_pro *ray, t_vars *vars)
 
 void dda_algo(t_pro *ray, t_vars *vars)
 {
+	ray->hit = 0;
 	while (ray->hit == 0)
 	{
 		if (ray->side_distx < ray->side_disty)

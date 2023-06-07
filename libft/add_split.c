@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_split.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mstiedl <mstiedl@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 06:48:55 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/06/03 16:14:39 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/06/07 18:25:11 by mstiedl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	**add_split(char **split, char *new)
 {
 	int		i;
-	int		len;
+	// int		len;
 	char	**new_split;
 
 	// if (split[0] == NULL || split == NULL)

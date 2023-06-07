@@ -18,7 +18,7 @@
 # define LEFT 65361
 # define RIGHT 65363
 # define R_SPD 0.05
-# define M_SPD 0.1
+# define M_SPD 0.1001
 
 typedef struct s_img
 {
