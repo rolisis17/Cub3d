@@ -17,7 +17,8 @@
 # define D 100
 # define LEFT 65361
 # define RIGHT 65363
-# define R_SPD 0.03
+# define R_SPD 0.05
+# define M_SPD 0.1
 
 typedef struct s_img
 {
@@ -72,7 +73,7 @@ typedef struct s_vars
 	t_wall	*wall;
 	t_img	*img;
 	int		fd;
-	int		roof;
+	int		ceiling;
 	int		floor;
 	int 	map_w;
 	int 	map_h;
@@ -111,10 +112,14 @@ int		check_nl(char *line);
 
 //exit
 int	close_win(t_vars *vars);
+void	free_vars(t_vars *vars);
 int	keys(int keycode, t_vars *vars);
 void look_left(t_vars *vars);
 void look_right(t_vars *vars);
 void	move_player(t_vars *vars);
+void	move_player_back(t_vars *vars);
+void	move_player_right(t_vars *vars);
+void	move_player_left(t_vars *vars);
 //projection
 void	projection(t_vars *vars);
 void	step_n_side(t_pro *ray, t_vars *vars);

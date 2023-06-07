@@ -1,11 +1,12 @@
 SRC = cube.c exit.c projection_new.c update_map.c player_info.c
 BIN = objs
 OBJ = $(SRC:%.c=${BIN}/%.o)
-NAME = cube
+NAME = cub3D
 HEADERS = cube.h
 FLAGS = -Wall -Werror -Wextra -g -fPIE
 FSAN = -fsanitize=address
 LIBFT = ./libft/libft.a
+MLX = ./mlx_linux/libmlx.a
 LIBCOM = -C ./libft --no-print-directory
 RM = rm -rf
 CC = cc
@@ -17,13 +18,16 @@ END=\033[0m
 
 all : $(NAME)
 
-$(NAME) : $(BIN) $(OBJ) | $(LIBFT)
+$(NAME) : $(BIN) $(OBJ) | $(LIBFT) $(MLX)
 	@$(CC) $(OBJ) $(FLAGS) -Llibft -lft -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lm -lz -lXext -lX11 -o $(NAME)
 	@echo "$(GREEN)>>>> Compiled <<<<$(END)"
 
 $(LIBFT) :
 	@make $(LIBCOM)
 	@make clean $(LIBCOM)
+
+$(MLX) :
+	make -C ./mlx_linux --no-print-directory
 
 $(BIN) :
 	@mkdir -p $(BIN)

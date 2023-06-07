@@ -6,7 +6,7 @@
 /*   By: mstiedl <mstiedl@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:34:49 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/06/06 20:44:36 by mstiedl          ###   ########.fr       */
+/*   Updated: 2023/06/07 14:33:36 by mstiedl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int ac, char **av)
 
 	fd = 0;
 	map = NULL;
-	if (av[2] && ac)
+	if (av[2] && ac) // make error messages for too many arg and not enough arg
 		return (1);
 	if (av[1])
 	{
@@ -31,10 +31,7 @@ int	main(int ac, char **av)
 			if (printf("Error 404: SUCK ME!"))
 				return (0);
 		}
-		// printf("THIS\n");
-		// int f = -1;
-		// while (map[++f])
-		// 	printf("%s\n", map[f]);
+		close(fd);
 		make_window(map);
 	}
 	freedom("s", map);
@@ -66,7 +63,7 @@ void	texture_init(t_vars *vars)
 	int	i;
 	char *textures[4];
 	
-	textures[0] = "./textures/North_Wall.xpm";
+	textures[0] = "./textures/North_Wall.xpm"; //get textures from file
 	textures[1] = "./textures/East_Wall.xpm";
 	textures[2] = "./textures/South_Wall.xpm";
 	textures[3] = "./textures/West_Wall.xpm";
@@ -74,7 +71,7 @@ void	texture_init(t_vars *vars)
 	i = -1;
 	vars->wall = (t_wall *)ft_calloc (sizeof(t_wall), 4);
 	if (!vars->wall)
-		exit (0);
+		exit (0); //this good?
 	while (++i < 4)
 	{
 		vars->wall[i].img = mlx_xpm_file_to_image(vars->mlx, textures[i], &vars->wall[i].w, &vars->wall[i].h);
@@ -88,19 +85,23 @@ void data_init(t_vars *vars, char **map)
 {
 	vars->map = map;
 	player_pos(0, 0, 0, vars);
-	// vars->dir_x = 0;
-	// vars->dir_y = -1;
 	vars->dir_x = get_dir(vars->dir, 0);
 	vars->dir_y = get_dir(vars->dir, 1);
-	vars->roof = create_trgb(0, 0, 255, 255);
+	vars->ceiling = create_trgb(0, 0, 255, 255); // floor_n_ceiling(); get the colours from the file
 	vars->floor = create_trgb(0, 255, 0, 255);
-	vars->plane_x = (0.66 * vars->dir_y) * 1;
-	vars->plane_y = (0.66 * vars->dir_x) * 1;
+	if (vars->dir == 'N' || vars->dir == 'S')
+	{
+		vars->plane_x = (0.66 * vars->dir_y) * -1;
+		vars->plane_y = (0.66 * vars->dir_x) * -1;	
+	}
+	else
+	{
+		vars->plane_x = (0.66 * vars->dir_y) * 1;
+		vars->plane_y = (0.66 * vars->dir_x) * 1;	
+	}
 	vars->time = 0;
 	vars->old_time = 0;
 }
-
-// South = x -1, y 0 // maybe
 
 int	parse_file(int fd, char ***file)
 {

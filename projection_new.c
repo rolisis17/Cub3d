@@ -6,7 +6,7 @@
 /*   By: mstiedl <mstiedl@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 13:52:14 by mstiedl           #+#    #+#             */
-/*   Updated: 2023/06/06 20:42:52 by mstiedl          ###   ########.fr       */
+/*   Updated: 2023/06/07 14:23:09 by mstiedl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,8 @@ void	projection(t_vars *vars)
 	ray = (t_pro *)malloc (sizeof(t_pro));
 	if (!ray)
 		exit (EXIT_FAILURE);
-	// printf("player pos: x:%f, y:%f", vars->pos_x, vars->pos_y);
 	while (++x < WIDTH)
 	{
-		// printf("HERE\n");
 		ray->camera_x = 2 * x / (double)WIDTH - 1;
 		ray->raydir_x = vars->dir_x + vars->plane_x * ray->camera_x;
 		ray->raydir_y = vars->dir_y + vars->plane_y * ray->camera_x;
@@ -41,7 +39,6 @@ void	projection(t_vars *vars)
 			ray->wall_s = 0;
 		if (ray->wall_e > HEIGHT)
 			ray->wall_e = HEIGHT;
-		// printf("x= %i, wall start= %i, wall end= %i\n", (int)x, ray->wall_s, ray->wall_e);
 		draw_line(ray, vars, x);
 		ray->hit = 0;
 	}
@@ -80,20 +77,15 @@ void dda_algo(t_pro *ray, t_vars *vars)
 		if (ray->side_distx < ray->side_disty)
 		{
 			ray->side_distx += ray->delta_x;
-			// printf("MAP X: %i, step %i\n", ray->map_x, ray->step_x);
 			ray->map_x += ray->step_x;
-			// printf("MAP X: %i, step %i\n", ray->map_x, ray->step_x);
 			ray->side = 0;
 		}
 		else
 		{
 			ray->side_disty += ray->delta_y;
-			// printf("MAP Y: %i, step %i\n", ray->map_y, ray->step_y);
 			ray->map_y += ray->step_y;
-			// printf("MAP Y: %i, step %i\n", ray->map_y, ray->step_y);
 			ray->side = 1;
 		}
-		// printf("MAP :%s\n", vars->map[ray->map_y]);
 		if (vars->map[ray->map_y][ray->map_x] == '1')
 			ray->hit = 1;
 	}
@@ -123,7 +115,7 @@ void	draw_line(t_pro *ray, t_vars *vars, int x)
 			pixel_put(vars->img, x, i, get_colour(vars, f));
 		}
 		else if (i < HEIGHT / 2 && i < ray->wall_s)
-			pixel_put(vars->img, x, i, vars->roof);
+			pixel_put(vars->img, x, i, vars->ceiling);
 		else if (i < HEIGHT && i > ray->wall_e)
 			pixel_put(vars->img, x, i, vars->floor);
 	}
@@ -134,8 +126,8 @@ int get_face(t_pro *ray)
 	if (ray->side == 0)
 	{
 		if (ray->raydir_x > 0)
-			return (3);
-		return (1);
+			return (1);
+		return (3);
 	}
 	else
 	{
@@ -147,7 +139,6 @@ int get_face(t_pro *ray)
 
 unsigned int	get_colour(t_vars *vars, int f)
 {
-	// printf("HERE: x: %i, y: %i\n", vars->wall[f].tex_x, vars->wall[f].tex_y);
 	return (*(unsigned int *)(vars->wall[f].img->addr + (vars->wall[f].tex_y * \
 	vars->wall[f].img->len + vars->wall[f].tex_x * (vars->wall[f].img->bpp / 8))));
 }
