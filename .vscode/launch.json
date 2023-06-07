@@ -5,11 +5,11 @@
       "name": "C/C++ Runner: Debug Session",
       "type": "cppdbg",
       "request": "launch",
-      "args": ["map1.cub"],
+      "args": ["map2.cub"],
       "stopAtEntry": false,
       "externalConsole": false,
       "cwd": "/nfs/homes/dcella-d/cube",
-      "program": "/nfs/homes/dcella-d/cube/cube",
+      "program": "/nfs/homes/dcella-d/cube/cub3D",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

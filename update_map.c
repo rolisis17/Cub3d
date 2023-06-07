@@ -6,7 +6,7 @@
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 15:14:10 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/06/03 21:40:07 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/06/07 18:16:22 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	**make_new_map(char **file, int max_len)
 		free(line);
 		f++;
 	}
-	freedom("s", file);
+	// freedom("s", file);
 	return (new);
 }
 
