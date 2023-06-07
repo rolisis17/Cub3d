@@ -69,7 +69,9 @@ typedef struct s_vars
 {
 	void	*mlx;
 	void	*win;
+	char	**path;
 	char	**map;
+	char	txt[4][10000];
 	t_wall	*wall;
 	t_img	*img;
 	int		fd;
@@ -89,17 +91,19 @@ typedef struct s_vars
 }				t_vars;
 
 char	**read_file(int fd);
-void	make_window(char **map);
-void	data_init(t_vars *vars, char **map);
-void	texture_init(t_vars *vars);
+void	make_window(char **map, char **path);
+void	data_init(t_vars *vars, char **map, char **p);
+int		texture_init(t_vars *vars, char **file);
 //parse
-int		parse_file(int fd, char ***file);
+int		parse_file(int fd, char ***file, char ***path);
 int		check_walls(char **file);
 int		search_line(char *line, int c);
 int		parse_full(char **file);
 int		check_map(char *line, int f);
 int		player_pos(char dir, int pos_col, int pos_row, t_vars *vars);
 int		check_maps_start(char *line);
+char	**check_data(char *line);
+char	*find_path(char *line);
 //player info
 int		get_dir(char player_dir, int arg);
 int		create_trgb(int t, int r, int g, int b);
@@ -130,5 +134,7 @@ double	my_ternery(double a, double b, double yes, double no);
 void	texture_calc(t_pro *ray, t_vars *vars, int f);
 unsigned int	get_colour(t_vars *vars, int f);
 int get_face(t_pro *ray);
+int	ps(char **file, char *dir, int check);
+char	*get_colour_file(char **file, char *dir);
 
 #endif
