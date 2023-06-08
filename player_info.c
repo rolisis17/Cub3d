@@ -6,7 +6,7 @@
 /*   By: mstiedl <mstiedl@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 17:52:02 by mstiedl           #+#    #+#             */
-/*   Updated: 2023/06/07 13:09:16 by mstiedl          ###   ########.fr       */
+/*   Updated: 2023/06/08 15:55:48 by mstiedl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,18 @@ int	get_dir(char player_dir, int arg)
 	return (0);
 }
 
-int	create_trgb(int t, int r, int g, int b)
+int	get_face(t_pro *ray)
 {
-	return (t << 24 | r << 16 | g << 8 | b);
+	if (ray->side == 0)
+	{
+		if (ray->raydir_x > 0)
+			return (1);
+		return (3);
+	}
+	else
+	{
+		if (ray->raydir_y > 0)
+			return (2);
+		return (0);
+	}
 }
