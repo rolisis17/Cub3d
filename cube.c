@@ -6,7 +6,7 @@
 /*   By: mstiedl <mstiedl@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:34:49 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/06/08 15:12:00 by mstiedl          ###   ########.fr       */
+/*   Updated: 2023/06/08 15:16:28 by mstiedl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,7 +184,7 @@ int	ps(char **file, char *dir, int check)
 	res[0] = ft_atoi(split[0]);
 	res[1] = ft_atoi(split[1]);
 	res[2] = ft_atoi(split[2]);
-	freedom("s", split);
+	freedom("sa", split, line);
 	return (res[check]);
 }
 
