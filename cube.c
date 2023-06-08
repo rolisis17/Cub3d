@@ -6,7 +6,7 @@
 /*   By: mstiedl <mstiedl@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:34:49 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/06/08 15:16:28 by mstiedl          ###   ########.fr       */
+/*   Updated: 2023/06/08 15:37:21 by mstiedl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,10 +105,11 @@ int	texture_init(t_vars *vars, char **file)
 	// 	exit (0); //this good?
 	while (++i < 4)
 	{
+		// printf("HERE\n");
 		vars->wall[i].img = mlx_xpm_file_to_image(vars->mlx, vars->txt[i], &vars->wall[i].w, &vars->wall[i].h);
 		if (vars->wall[i].img == NULL)
 			exit(EXIT_FAILURE); // fix this shit
-		vars->wall[i].img->addr = mlx_get_data_addr(vars->wall[i].img, &vars->wall[i].img->bpp, &vars->wall[i].img->len, &vars->wall[i].img->edn);	
+		vars->wall[i].addr = mlx_get_data_addr(vars->wall[i].img, &vars->wall[i].bpp, &vars->wall[i].len, &vars->wall[i].edn);	
 	}
 	return (0);
 }

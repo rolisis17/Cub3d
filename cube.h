@@ -55,7 +55,12 @@ typedef struct s_projection
 
 typedef struct s_wall
 {
-	t_img	*img;
+	// t_img	*img;
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		len;
+	int		edn;
 	double	x;
 	double	y;
 	int		tex_x;

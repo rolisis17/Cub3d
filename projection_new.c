@@ -6,7 +6,7 @@
 /*   By: mstiedl <mstiedl@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 13:52:14 by mstiedl           #+#    #+#             */
-/*   Updated: 2023/06/07 18:31:05 by mstiedl          ###   ########.fr       */
+/*   Updated: 2023/06/08 15:37:45 by mstiedl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,8 +139,8 @@ int get_face(t_pro *ray)
 
 unsigned int	get_colour(t_vars *vars, int f)
 {
-	return (*(unsigned int *)(vars->wall[f].img->addr + (vars->wall[f].tex_y * \
-	vars->wall[f].img->len + vars->wall[f].tex_x * (vars->wall[f].img->bpp / 8))));
+	return (*(unsigned int *)(vars->wall[f].addr + (vars->wall[f].tex_y * \
+	vars->wall[f].len + vars->wall[f].tex_x * (vars->wall[f].bpp / 8))));
 }
 
 void	texture_calc(t_pro *ray, t_vars *vars, int f)

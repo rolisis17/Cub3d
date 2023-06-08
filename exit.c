@@ -6,7 +6,7 @@
 /*   By: mstiedl <mstiedl@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 15:05:43 by mstiedl           #+#    #+#             */
-/*   Updated: 2023/06/08 15:14:25 by mstiedl          ###   ########.fr       */
+/*   Updated: 2023/06/08 15:40:39 by mstiedl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,12 @@ void	free_vars(t_vars *vars)
 	int i;
 
 	i = -1;
-	mlx_destroy_window(vars->mlx, vars->win);
-	mlx_destroy_display(vars->mlx);
-	free(vars->wall->img);
-	printf("HERE\n");
 	while (++i < 4)
 		if (vars->wall[i].img)
 			mlx_destroy_image(vars->mlx, vars->wall[i].img);
-	// free(vars->img);
-	// free(vars->mlx);
-	// mlx_destroy_image(vars->mlx, vars->img);
-	// mlx_destroy_image(vars->mlx, vars->img);
-	freedom("saa", vars->map, vars->wall, vars);
+	mlx_destroy_window(vars->mlx, vars->win);
+	mlx_destroy_display(vars->mlx);
+	freedom("sa", vars->map, vars);
 }
 
 int	keys(int keycode, t_vars *vars)
