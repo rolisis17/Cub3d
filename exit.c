@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mstiedl <mstiedl@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 15:05:43 by mstiedl           #+#    #+#             */
-/*   Updated: 2023/06/08 15:40:39 by mstiedl          ###   ########.fr       */
+/*   Updated: 2023/06/08 15:44:47 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ void	free_vars(t_vars *vars)
 		if (vars->wall[i].img)
 			mlx_destroy_image(vars->mlx, vars->wall[i].img);
 	mlx_destroy_window(vars->mlx, vars->win);
+	mlx_destroy_image(vars->mlx, vars->img->img);
 	mlx_destroy_display(vars->mlx);
-	freedom("sa", vars->map, vars);
+	freedom("saa", vars->map, vars->mlx, vars);
 }
 
 int	keys(int keycode, t_vars *vars)

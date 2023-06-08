@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mstiedl <mstiedl@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:34:49 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/06/08 15:37:21 by mstiedl          ###   ########.fr       */
+/*   Updated: 2023/06/08 15:42:38 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	make_window(char **map, char **path)
 	if (texture_init(vars, path))
 		return ;
 	projection(vars);
+	freedom("s", path);
 	mlx_hook(vars->win, 2, 1L << 0, keys, vars);
 	mlx_hook(vars->win, 17, 1L << 2, close_win, vars);
 	mlx_loop(vars->mlx);
