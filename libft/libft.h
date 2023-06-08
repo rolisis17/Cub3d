@@ -6,7 +6,7 @@
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:14:30 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/06/02 15:30:25 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/06/08 15:50:15 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	ft_putchar_fd(char c, int fd);
 
 void	ft_putstr_fd(char *s, int fd);
 
-void	ft_putendl_fd(char *s, int fd);
+int		ft_putendl_fd(char *s, int fd);
 
 void	ft_putnbr_fd(int n, int fd);
 

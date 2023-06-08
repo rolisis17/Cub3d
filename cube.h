@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cube.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/08 16:06:49 by dcella-d          #+#    #+#             */
+/*   Updated: 2023/06/08 16:06:51 by dcella-d         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUBE_H
 # define CUBE_H
 
@@ -55,7 +67,6 @@ typedef struct s_projection
 
 typedef struct s_wall
 {
-	// t_img	*img;
 	void	*img;
 	char	*addr;
 	int		bpp;
@@ -82,64 +93,64 @@ typedef struct s_vars
 	int		fd;
 	int		ceiling;
 	int		floor;
-	int 	map_w;
-	int 	map_h;
+	int		map_w;
+	int		map_h;
 	double	pos_x;
 	double	pos_y;
 	char	dir;
 	double	dir_x;
-	double	dir_y; //initial direction vector
-  	double	plane_x;
-	double	plane_y; //the 2d raycaster version of camera plane
-	double	time; //time of current frame
-	double	old_time; //time of previous frame
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+	double	time;
+	double	old_time;
 }				t_vars;
 
-char	**read_file(int fd);
-void	make_window(char **map, char **path);
-void	data_init(t_vars *vars, char **map, char **p);
-int		texture_init(t_vars *vars, char **file);
+char			**read_file(int fd);
+void			make_window(char **map, char **path);
+void			data_init(t_vars *vars, char **map, char **p);
+int				texture_init(t_vars *vars, char **file);
 //parse
-int		parse_file(int fd, char ***file, char ***path);
-int		check_walls(char **file);
-int		search_line(char *line, int c);
-int		parse_full(char **file);
-int		check_map(char *line, int f);
-int		player_pos(char dir, int pos_col, int pos_row, t_vars *vars);
-int		check_maps_start(char *line);
-char	**check_data(char *line);
-char	*find_path(char *line);
+int				parse_file(int fd, char ***file, char ***path);
+int				check_walls(char **file);
+int				search_line(char *line, int c);
+int				parse_full(char **file);
+int				check_map(char *line, int f);
+int				player_pos(char dir, int pos_col, int pos_row, t_vars *vars);
+int				check_maps_start(char *line);
+char			**check_data(char *line);
+char			*find_path(char *line);
 //player info
-int		get_dir(char player_dir, int arg);
-int		create_trgb(int t, int r, int g, int b);
+int				get_dir(char player_dir, int arg);
+int				create_trgb(int t, int r, int g, int b);
 //update map
-char	*strpp(char *line, int len, int c);
-char	*make_new_line(char *line, int max_len);
-int		find_max_len(char **file);
-char	**make_new_map(char **file, int max_len);
-int		check_nl(char *line);
+char			*strpp(char *line, int len, int c);
+char			*make_new_line(char *line, int max_len);
+int				find_max_len(char **file);
+char			**make_new_map(char **file, int max_len);
+int				check_nl(char *line);
 
 //exit
-int	close_win(t_vars *vars);
-void	free_vars(t_vars *vars);
-int	keys(int keycode, t_vars *vars);
-void look_left(t_vars *vars);
-void look_right(t_vars *vars);
-void	move_player(t_vars *vars);
-void	move_player_back(t_vars *vars);
-void	move_player_right(t_vars *vars);
-void	move_player_left(t_vars *vars);
+int				close_win(t_vars *vars);
+void			free_vars(t_vars *vars);
+int				keys(int keycode, t_vars *vars);
+void			look_left(t_vars *vars);
+void			look_right(t_vars *vars);
+void			move_player(t_vars *vars);
+void			move_player_back(t_vars *vars);
+void			move_player_right(t_vars *vars);
+void			move_player_left(t_vars *vars);
 //projection
-void	projection(t_vars *vars);
-void	step_n_side(t_pro *ray, t_vars *vars);
-void	dda_algo(t_pro *ray, t_vars *vars);
-void	draw_line(t_pro *ray, t_vars *vars, int x);
-void	pixel_put(t_img *img, int x, int y, int colour);
-double	my_ternery(double a, double b, double yes, double no);
-void	texture_calc(t_pro *ray, t_vars *vars, int f);
+void			projection(t_vars *vars);
+void			step_n_side(t_pro *ray, t_vars *vars);
+void			dda_algo(t_pro *ray, t_vars *vars);
+void			draw_line(t_pro *ray, t_vars *vars, int x);
+void			pixel_put(t_img *img, int x, int y, int colour);
+double			my_ternery(double a, double b, double yes, double no);
+void			texture_calc(t_pro *ray, t_vars *vars, int f);
 unsigned int	get_colour(t_vars *vars, int f);
-int get_face(t_pro *ray);
-int	ps(char **file, char *dir, int check);
-char	*get_colour_file(char **file, char *dir);
+int				get_face(t_pro *ray);
+int				ps(char **file, char *dir, int check);
+char			*get_colour_file(char **file, char *dir);
 
 #endif
