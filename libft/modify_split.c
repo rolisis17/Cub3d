@@ -6,7 +6,7 @@
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 06:48:55 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/05/31 19:07:00 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/06/08 16:15:40 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 char	**modify_split(char **split, char *mod, int arg, int flag)
 {
-    int     i;
-    int     len;
-    char    **new_split;
+	int		i;
+	int		len;
+	char	**new_split;
 
 	if (!mod)
 		return (split);
-    i = word_count(split);
+	i = word_count(split);
 	new_split = (char **) ft_calloc(sizeof(char *), i + 1);
-    if (!new_split)
+	if (!new_split)
 		return (0);
-    i = -1;
-    while (split[++i])
-    {
-		if ((ft_strncmp(split[i], mod, strintchr(mod, flag) - 1) != 0))
+	i = -1;
+	while (split[++i])
+	{
+		if ((ft_strncmp(split[i], mod, strintchr(mod, flag)) != 0))
 		{
 			len = ft_strlen(split[i]);
 			new_split[i] = ft_calloc(len + 1, sizeof(char));
@@ -35,10 +35,10 @@ char	**modify_split(char **split, char *mod, int arg, int flag)
 		}
 		else
 			new_split[i] = ft_strdup(mod);
-    }
+	}
 	if (!arg)
-    	freesplit(split);
-    return(new_split);
+		freesplit(split);
+	return (new_split);
 }
 
 int	strintchr(char	*str, int c)

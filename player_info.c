@@ -6,7 +6,7 @@
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 17:52:02 by mstiedl           #+#    #+#             */
-/*   Updated: 2023/06/08 16:08:49 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/06/08 16:35:20 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,28 @@ int	get_face(t_pro *ray)
 			return (2);
 		return (0);
 	}
+}
+
+int	player_pos(char dir, int pos_col, int pos_row, t_vars *vars)
+{
+	static char	one_dir;
+	static int	col;
+	static int	row;
+
+	if (vars)
+	{
+		vars->pos_x = col + 0.5;
+		vars->pos_y = row + 0.5;
+		vars->dir = one_dir;
+		return (0);
+	}
+	if (one_dir && pos_col == -1)
+		return (0);
+	if (!one_dir && dir && !vars)
+		one_dir = dir;
+	if (!col && pos_col && !vars)
+		col = pos_col;
+	if (!row && pos_row && !vars)
+		row = pos_row;
+	return (1);
 }

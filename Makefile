@@ -1,4 +1,4 @@
-SRC = cube.c exit.c projection.c update_map.c player_info.c
+SRC = cube.c exit.c projection.c update_map.c player_info.c move.c init.c parse.c texture.c tools.c
 BIN = objs
 OBJ = $(SRC:%.c=${BIN}/%.o)
 NAME = cub3D

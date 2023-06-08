@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   freedom.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcella-d <dcella-d@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 06:48:55 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/05/16 15:50:02 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/06/08 16:18:41 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	*freedom(const char *str, ...)
 void	freelist(t_store *list)
 {
 	t_store	*temp;
-	
-	while(list)
+
+	while (list)
 	{
 		temp = list;
 		list = list->next;

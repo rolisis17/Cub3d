@@ -3,17 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-<<<<<<< HEAD
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 16:06:49 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/06/08 16:06:51 by dcella-d         ###   ########.fr       */
-=======
-/*   By: mstiedl <mstiedl@student.42lisboa.com>     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/08 16:05:54 by mstiedl           #+#    #+#             */
-/*   Updated: 2023/06/08 16:07:02 by mstiedl          ###   ########.fr       */
->>>>>>> bf1bbf59cba8bf6f4c19af07aa7638df77d9a86c
+/*   Updated: 2023/06/08 16:28:05 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,10 +142,6 @@ void			move_player_right(t_vars *vars);
 void			move_player_left(t_vars *vars);
 //projection
 void			projection(t_vars *vars);
-<<<<<<< HEAD
-=======
-void			wall_calc(t_pro *ray);
->>>>>>> bf1bbf59cba8bf6f4c19af07aa7638df77d9a86c
 void			step_n_side(t_pro *ray, t_vars *vars);
 void			dda_algo(t_pro *ray, t_vars *vars);
 void			draw_line(t_pro *ray, t_vars *vars, int x);
@@ -163,5 +152,7 @@ unsigned int	get_colour(t_vars *vars, int f);
 int				get_face(t_pro *ray);
 int				ps(char **file, char *dir, int check);
 char			*get_colour_file(char **file, char *dir);
+void			wall_calc(t_pro *ray);
+int				read_texture(t_vars *vars, char **file, char *dir, int order);
 
 #endif

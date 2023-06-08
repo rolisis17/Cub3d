@@ -6,7 +6,7 @@
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 18:25:40 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/06/01 15:49:13 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/06/08 16:17:12 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 #include "libft.h"
 
 static int		ft_strlen_get(const char *str);
-int		ft_check(char *to_check);
-char	*ft_gnl_join(char *s1, char *s2);
+int				ft_check(char *to_check);
+char			*ft_gnl_join(char *s1, char *s2);
 
 char	*get_next_line(int fd)
 {

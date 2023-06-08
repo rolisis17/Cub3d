@@ -6,7 +6,7 @@
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 15:05:43 by mstiedl           #+#    #+#             */
-/*   Updated: 2023/06/08 15:44:47 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/06/08 16:21:37 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	close_win(t_vars *vars)
 
 void	free_vars(t_vars *vars)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (++i < 4)
@@ -58,8 +58,11 @@ int	keys(int keycode, t_vars *vars)
 
 void	look_right(t_vars *vars)
 {
-	double old_dirx = vars->dir_x;
-	double old_planex = vars->plane_x;
+	double	old_dirx;
+	double	old_planex;
+
+	old_dirx = vars->dir_x;
+	old_planex = vars->plane_x;
 	vars->dir_x = vars->dir_x * cos(R_SPD) - vars->dir_y * sin(R_SPD);
 	vars->dir_y = old_dirx * sin(R_SPD) + vars->dir_y * cos(R_SPD);
 	vars->plane_x = vars->plane_x * cos(R_SPD) - vars->plane_y * sin(R_SPD);
@@ -68,52 +71,13 @@ void	look_right(t_vars *vars)
 
 void	look_left(t_vars *vars)
 {
-	double old_dirx = vars->dir_x;
-	double old_planex = vars->plane_x;
+	double	old_dirx;
+	double	old_planex;
+
+	old_dirx = vars->dir_x;
+	old_planex = vars->plane_x;
 	vars->dir_x = vars->dir_x * cos(-R_SPD) - vars->dir_y * sin(-R_SPD);
 	vars->dir_y = old_dirx * sin(-R_SPD) + vars->dir_y * cos(-R_SPD);
 	vars->plane_x = vars->plane_x * cos(-R_SPD) - vars->plane_y * sin(-R_SPD);
 	vars->plane_y = old_planex * sin(-R_SPD) + vars->plane_y * cos(-R_SPD);
-}
-
-void	move_player(t_vars *vars)
-{
-	if (vars->map[(int)vars->pos_y][(int)(vars->pos_x + vars->dir_x * M_SPD)] != 49)
-		vars->pos_x += vars->dir_x * M_SPD;
-	if (vars->map[(int)(vars->pos_y + vars->dir_y * M_SPD)][(int)vars->pos_x] != 49)
-		vars->pos_y += vars->dir_y * M_SPD;
-}
-
-void	move_player_back(t_vars *vars)
-{
-	if (vars->map[(int)vars->pos_y][(int)(vars->pos_x - vars->dir_x * M_SPD)] != 49)
-		vars->pos_x -= vars->dir_x * M_SPD;
-	if (vars->map[(int)(vars->pos_y - vars->dir_y * M_SPD)][(int)vars->pos_x] != 49)
-		vars->pos_y -= vars->dir_y * M_SPD;
-}
-
-void	move_player_right(t_vars *vars)
-{
-	double	newdir_x;
-	double	newdir_y;
-	
-	newdir_x = vars->dir_x * cos(M_PI_2) - vars->dir_y * sin(M_PI_2);
-	newdir_y = vars->dir_x * sin(M_PI_2) + vars->dir_y * cos(M_PI_2);
-	if (vars->map[(int)vars->pos_y][(int)(vars->pos_x + (newdir_x) * M_SPD)] != 49)
-		vars->pos_x += (newdir_x) * M_SPD;
-	if (vars->map[(int)(vars->pos_y + (newdir_y) * M_SPD)][(int)vars->pos_x] != 49)
-		vars->pos_y += (newdir_y) * M_SPD;
-}
-
-void	move_player_left(t_vars *vars)
-{
-	double	newdir_x;
-	double	newdir_y;
-
-	newdir_x = vars->dir_x * cos(-M_PI_2) - vars->dir_y * sin(-M_PI_2);
-	newdir_y = vars->dir_x * sin(-M_PI_2) + vars->dir_y * cos(-M_PI_2);
-	if (vars->map[(int)vars->pos_y][(int)(vars->pos_x + (newdir_x) * M_SPD)] != 49)
-		vars->pos_x += (newdir_x) * M_SPD;
-	if (vars->map[(int)(vars->pos_y + (newdir_y) * M_SPD)][(int)vars->pos_x] != 49)
-		vars->pos_y += (newdir_y) * M_SPD;
 }
