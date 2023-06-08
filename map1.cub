@@ -4,10 +4,11 @@ WE ./textures/North_Wall.xpm
 EA ./textures/East_Wall.xpm
 SO ./textures/South_Wall.xpm
 
-F 255,0,255
-C 0,255,255
+F 255,255,0
+C 0,0,255
 
 1111111
+1N00001
 1000001
 1000001
 1000001
@@ -15,5 +16,4 @@ C 0,255,255
 1000001
 1000001
 1000001
-10000N1
 1111111

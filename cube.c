@@ -6,7 +6,7 @@
 /*   By: mstiedl <mstiedl@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:34:49 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/06/07 19:00:17 by mstiedl          ###   ########.fr       */
+/*   Updated: 2023/06/08 15:12:00 by mstiedl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,9 @@ int	texture_init(t_vars *vars, char **file)
 	// textures[3] = "./textures/West_Wall.xpm";
 
 	i = -1;
-	vars->wall = (t_wall *)ft_calloc (sizeof(t_wall), 4);
-	if (!vars->wall)
-		exit (0); //this good?
+	// vars->wall = (t_wall *)ft_calloc (sizeof(t_wall), 4);
+	// if (!vars->wall)
+	// 	exit (0); //this good?
 	while (++i < 4)
 	{
 		vars->wall[i].img = mlx_xpm_file_to_image(vars->mlx, vars->txt[i], &vars->wall[i].w, &vars->wall[i].h);
@@ -269,8 +269,8 @@ int	player_pos(char dir, int pos_col, int pos_row, t_vars *vars)
 	
 	if (vars)
 	{
-		vars->pos_x = col;
-		vars->pos_y = row;
+		vars->pos_x = col + 0.5;
+		vars->pos_y = row + 0.5;
 		vars->dir = one_dir;
 		return (0);
 	}

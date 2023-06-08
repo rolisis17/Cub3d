@@ -6,7 +6,7 @@
 /*   By: mstiedl <mstiedl@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 15:05:43 by mstiedl           #+#    #+#             */
-/*   Updated: 2023/06/07 18:58:35 by mstiedl          ###   ########.fr       */
+/*   Updated: 2023/06/08 15:14:25 by mstiedl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ int	close_win(t_vars *vars)
 
 void	free_vars(t_vars *vars)
 {
-	// int i;
+	int i;
 
-	// i = -1;
+	i = -1;
 	mlx_destroy_window(vars->mlx, vars->win);
 	mlx_destroy_display(vars->mlx);
 	free(vars->wall->img);
-	// printf("HERE\n");
-	// while (++i < 4)
-	// 	if (vars->wall[i].img)
-	// 		mlx_destroy_image(vars->mlx, vars->wall[i].img);
+	printf("HERE\n");
+	while (++i < 4)
+		if (vars->wall[i].img)
+			mlx_destroy_image(vars->mlx, vars->wall[i].img);
 	// free(vars->img);
 	// free(vars->mlx);
 	// mlx_destroy_image(vars->mlx, vars->img);

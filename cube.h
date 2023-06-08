@@ -72,7 +72,7 @@ typedef struct s_vars
 	char	**path;
 	char	**map;
 	char	txt[4][10000];
-	t_wall	*wall;
+	t_wall	wall[4];
 	t_img	*img;
 	int		fd;
 	int		ceiling;
