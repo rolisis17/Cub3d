@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   projection_new.c                                   :+:      :+:    :+:   */
+/*   projection.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mstiedl <mstiedl@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 13:52:14 by mstiedl           #+#    #+#             */
-/*   Updated: 2023/06/08 15:37:45 by mstiedl          ###   ########.fr       */
+/*   Updated: 2023/06/08 16:02:49 by mstiedl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	projection(t_vars *vars)
 {
 	int		x;
 	t_pro	*ray;
-	
+
 	x = -1;
 	ray = (t_pro *)malloc (sizeof(t_pro));
 	if (!ray)
@@ -28,21 +28,28 @@ void	projection(t_vars *vars)
 		ray->raydir_y = vars->dir_y + vars->plane_y * ray->camera_x;
 		ray->map_x = (int)vars->pos_x;
 		ray->map_y = (int)vars->pos_y;
-		ray->delta_x = my_ternery(ray->raydir_x, 0, 1e30, fabs(1 / ray->raydir_x));
-		ray->delta_y = my_ternery(ray->raydir_y, 0, 1e30, fabs(1 / ray->raydir_y));
+		ray->delta_x = my_ternery(ray->raydir_x, 0, 1e30, \
+		fabs(1 / ray->raydir_x));
+		ray->delta_y = my_ternery(ray->raydir_y, 0, 1e30, \
+		fabs(1 / ray->raydir_y));
 		step_n_side(ray, vars);
 		dda_algo(ray, vars);
-		ray->wall_h = (int)(HEIGHT / ray->wall_dist);
-		ray->wall_s = -ray->wall_h / 2 + HEIGHT / 2;
-		ray->wall_e = ray->wall_h / 2 + HEIGHT / 2;
-		if (ray->wall_s < 0)
-			ray->wall_s = 0;
-		if (ray->wall_e > HEIGHT)
-			ray->wall_e = HEIGHT;
+		wall_calc(ray);
 		draw_line(ray, vars, x);
 	}
 	free(ray);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img->img, 0, 0);
+}
+
+void	wall_calc(t_pro *ray)
+{
+	ray->wall_h = (int)(HEIGHT / ray->wall_dist);
+	ray->wall_s = -ray->wall_h / 2 + HEIGHT / 2;
+	ray->wall_e = ray->wall_h / 2 + HEIGHT / 2;
+	if (ray->wall_s < 0)
+		ray->wall_s = 0;
+	if (ray->wall_e > HEIGHT)
+		ray->wall_e = HEIGHT;
 }
 
 void	step_n_side(t_pro *ray, t_vars *vars)
@@ -69,7 +76,7 @@ void	step_n_side(t_pro *ray, t_vars *vars)
 	}
 }
 
-void dda_algo(t_pro *ray, t_vars *vars)
+void	dda_algo(t_pro *ray, t_vars *vars)
 {
 	ray->hit = 0;
 	while (ray->hit == 0)
@@ -97,7 +104,7 @@ void dda_algo(t_pro *ray, t_vars *vars)
 
 void	draw_line(t_pro *ray, t_vars *vars, int x)
 {
-	int 	i;
+	int		i;
 	int		f;
 	double	step;
 
@@ -119,58 +126,4 @@ void	draw_line(t_pro *ray, t_vars *vars, int x)
 		else if (i < HEIGHT && i > ray->wall_e)
 			pixel_put(vars->img, x, i, vars->floor);
 	}
-}
-
-int get_face(t_pro *ray)
-{
-	if (ray->side == 0)
-	{
-		if (ray->raydir_x > 0)
-			return (1);
-		return (3);
-	}
-	else
-	{
-		if (ray->raydir_y > 0)
-			return (2);
-		return (0);
-	}
-}
-
-unsigned int	get_colour(t_vars *vars, int f)
-{
-	return (*(unsigned int *)(vars->wall[f].addr + (vars->wall[f].tex_y * \
-	vars->wall[f].len + vars->wall[f].tex_x * (vars->wall[f].bpp / 8))));
-}
-
-void	texture_calc(t_pro *ray, t_vars *vars, int f)
-{
-	if (ray->side == 0)
-		vars->wall[f].x = vars->pos_y + ray->wall_dist * ray->raydir_y;
-	else
-		vars->wall[f].x = vars->pos_x + ray->wall_dist * ray->raydir_x;
-	vars->wall[f].x -= floor(vars->wall[f].x);
-	vars->wall[f].tex_x = (int)(vars->wall[f].x * (double)vars->wall[f].w);
-	if (ray->side == 0 && ray->raydir_x > 0)
-		vars->wall[f].tex_x = vars->wall[f].w - vars->wall[f].tex_x - 1;
-	if (ray->side == 1 && ray->raydir_y < 0)
-		vars->wall[f].tex_x = vars->wall[f].w - vars->wall[f].tex_x - 1;
-}
-
-void	pixel_put(t_img *img, int x, int y, int colour)
-{
-	char	*dst;
-
-	if (x > WIDTH || x < 0 || y < 0 || y > HEIGHT)
-		return ;
-	dst = img->addr + (y * img->len + x * (img->bpp / 8));
-	*(unsigned int *)dst = colour;
-}
-
-double	my_ternery(double a, double b, double yes, double no)
-{
-	if (a == b)
-		return (yes);
-	else
-		return (no);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mstiedl <mstiedl@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 15:14:10 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/06/07 18:16:22 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/06/08 15:49:36 by mstiedl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ char	**make_new_map(char **file, int max_len)
 		free(line);
 		f++;
 	}
-	// freedom("s", file);
 	return (new);
 }
 
@@ -63,14 +62,14 @@ int	find_max_len(char **file)
 	f = -1;
 	max_len = 0;
 	while (file[++f])
-		if (ft_strlen(file[f]) > max_len)//printf("%d\n", ft_strlen(file[f])) && 
+		if (ft_strlen(file[f]) > max_len)
 			max_len = ft_strlen(file[f]);
 	return (max_len);
 }
 
 char	*make_new_line(char *line, int max_len)
 {
-	int			f;
+	int	f;
 
 	f = -1;
 	while (line[++f])
@@ -85,8 +84,8 @@ char	*make_new_line(char *line, int max_len)
 
 char	*strpp(char *line, int len, int c)
 {
-	char *res;
-	int	f;
+	char	*res;
+	int		f;
 
 	f = ft_strlen(line);
 	if (f < len)
@@ -103,11 +102,4 @@ char	*strpp(char *line, int len, int c)
 	res = ft_strdup(line);
 	freedom("a", line);
 	return (line);
-}
-
-int	check_nl(char *line)
-{
-	if (line[ft_strlen(line) - 1] == '\n')
-		return (1);
-	return (0);
 }
