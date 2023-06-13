@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mstiedl <mstiedl@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 15:14:10 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/06/08 15:49:36 by mstiedl          ###   ########.fr       */
+/*   Updated: 2023/06/13 19:54:34 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ int	check_maps_start(char *line)
 	counter = 0;
 	while (line[f] == 32)
 		f++;
-	while (line[++f])
+	while (line[f] == 49 || line[f] == 48)
 	{
-		if (line[f] == 49 || line[f] == 48)
-			counter++;
+		counter++;
 		if (counter == 3)
 			return (1);
+		f++;
 	}
 	return (0);
 }

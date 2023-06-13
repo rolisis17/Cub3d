@@ -6,7 +6,7 @@
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 16:02:38 by mstiedl           #+#    #+#             */
-/*   Updated: 2023/06/08 16:27:01 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/06/13 19:56:54 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ char	*get_colour_file(char **file, char *dir)
 	while (file[f] && ft_strncmp(file[f], dir, 2) != 0)
 		f++;
 	if (!file[f] && ft_strncmp("C ", dir, 2) == 0)
-		return ("0,255,255");
+		return (ft_strdup("0,255,255"));
 	else if (!file[f] && ft_strncmp("F ", dir, 2) == 0)
-		return ("255,0,255");
+		return (ft_strdup("255,0,255"));
 	split = ft_split(file[f], 32);
 	res = ft_strdup(split[1]);
 	freedom("s", split);

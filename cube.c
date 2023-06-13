@@ -6,7 +6,7 @@
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:34:49 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/06/08 16:41:00 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/06/13 19:36:24 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	main(int ac, char **av)
 		fd = open(av[1], O_RDONLY);
 		if (fd == -1 || parse_file(fd, &map, &path))
 		{
-			if (map && path)
-				freedom("s", map, path);
+			if ((map && !freedom("s", map)) || (path && !freedom("s", path)))
+				;
 			if (ft_putendl_fd("Error 404: Question map?", 2))
 				return (1);
 		}
