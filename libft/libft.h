@@ -6,7 +6,7 @@
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:14:30 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/06/08 15:50:15 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/06/15 17:58:11 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,6 +195,10 @@ typedef struct s_storage
 // FREEDOM
 
 void	*freedom(const char *str, ...);
+
+void	freedom_exit(const char *str, ...);
+
+void	freedom_exit_error(const char *str, ...);
 
 void	freelist(t_store *list);
 

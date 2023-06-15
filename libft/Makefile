@@ -11,9 +11,9 @@ ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
 GNL = get_next_line.c get_next_line_utils.c
 PRINTF = ft_printf.c ft_count.c ft_flags.c ft_putchar.c ft_putstr.c ft_putnbr.c \
 ft_putunsigned.c ft_puthexa.c ft_putaddress.c
-MINISHELL = exit_exec.c freedom.c free_split.c copy_split.c char_join.c \
-add_split.c ft_strjoin_mod.c join_the_split.c merge_split.c modify_split.c \
-remove_split.c word_count.c
+MINISHELL = exit_exec.c freedom.c  free_split.c \
+copy_split.c char_join.c add_split.c ft_strjoin_mod.c join_the_split.c merge_split.c \
+modify_split.c remove_split.c word_count.c freedom_exit.c freedom_exit_error.c
 CFLAGS = -Wall -Wextra -Werror -fPIE
 CC = cc
 NAME = libft.a

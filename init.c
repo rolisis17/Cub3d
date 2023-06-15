@@ -6,7 +6,7 @@
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 16:11:27 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/06/08 16:11:54 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/06/15 17:04:46 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ void	data_init(t_vars *vars, char **map, char **p)
 	player_pos(0, 0, 0, vars);
 	vars->dir_x = get_dir(vars->dir, 0);
 	vars->dir_y = get_dir(vars->dir, 1);
-	vars->ceiling = create_trgb(0, ps(p, "C ", 0), ps(p, "C ", 1), \
-	ps(p, "C ", 2));
-	vars->floor = create_trgb(0, ps(p, "F ", 0), ps(p, "F ", 1), \
-	ps(p, "F ", 2));
+	vars->ceiling = create_trgb(0, ps(p, "C ", 0, vars), ps(p, "C ", 1, vars), \
+	ps(p, "C ", 2, vars));
+	vars->floor = create_trgb(0, ps(p, "F ", 0, vars), ps(p, "F ", 1, vars), \
+	ps(p, "F ", 2, vars));
 	if (vars->dir == 'N' || vars->dir == 'S')
 	{
 		vars->plane_x = (0.66 * vars->dir_y) * -1;

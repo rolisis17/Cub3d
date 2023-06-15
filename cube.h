@@ -6,7 +6,7 @@
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 16:06:49 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/06/08 16:28:05 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/06/15 17:31:55 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ int				player_pos(char dir, int pos_col, int pos_row, t_vars *vars);
 int				check_maps_start(char *line);
 char			**check_data(char *line);
 char			*find_path(char *line);
+int				is_correct(char *str);
 //player info
 int				get_dir(char player_dir, int arg);
 int				create_trgb(int t, int r, int g, int b);
@@ -150,7 +151,7 @@ double			my_ternery(double a, double b, double yes, double no);
 void			texture_calc(t_pro *ray, t_vars *vars, int f);
 unsigned int	get_colour(t_vars *vars, int f);
 int				get_face(t_pro *ray);
-int				ps(char **file, char *dir, int check);
+int				ps(char **file, char *dir, int check, t_vars *vars);
 char			*get_colour_file(char **file, char *dir);
 void			wall_calc(t_pro *ray);
 int				read_texture(t_vars *vars, char **file, char *dir, int order);
