@@ -6,7 +6,7 @@
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 15:14:10 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/06/13 19:54:34 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/06/16 18:36:24 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,9 @@ int	check_maps_start(char *line)
 
 	f = 0;
 	counter = 0;
-	while (line[f] == 32)
+	if (!line)
+		return (1);
+	while (line[f] && line[f] == 32)
 		f++;
 	while (line[f] == 49 || line[f] == 48)
 	{

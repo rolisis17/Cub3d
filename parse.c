@@ -6,7 +6,7 @@
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 16:12:33 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/06/13 19:53:56 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/06/16 18:09:03 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ int	check_walls(char **file)
 	u = word_count(file);
 	while (!check_maps_start(file[f]))
 		f++;
+	if (!file[f])
+		return (1);
 	if (search_line(file[f], '1') || search_line(file[u - 1], '1'))
 		return (1);
 	while (file[f])

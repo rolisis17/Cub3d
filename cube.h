@@ -6,7 +6,7 @@
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 16:06:49 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/06/15 17:31:55 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/06/16 16:19:37 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ typedef struct s_vars
 char			**read_file(int fd);
 void			make_window(char **map, char **path);
 void			data_init(t_vars *vars, char **map, char **p);
-int				texture_init(t_vars *vars, char **file);
+int				texture_init(t_vars **vars, char **file);
 //parse
 int				parse_file(int fd, char ***file, char ***path);
 int				check_walls(char **file);
@@ -121,6 +121,7 @@ int				check_maps_start(char *line);
 char			**check_data(char *line);
 char			*find_path(char *line);
 int				is_correct(char *str);
+void			texture_error(t_vars *vars, char **file, int i);
 //player info
 int				get_dir(char player_dir, int arg);
 int				create_trgb(int t, int r, int g, int b);

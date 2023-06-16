@@ -6,7 +6,7 @@
 /*   By: dcella-d <dcella-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:34:49 by dcella-d          #+#    #+#             */
-/*   Updated: 2023/06/13 19:36:24 by dcella-d         ###   ########.fr       */
+/*   Updated: 2023/06/16 15:57:55 by dcella-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ void	make_window(char **map, char **path)
 	if (!vars)
 		exit (0);
 	data_init(vars, map, path);
-	vars->mlx = mlx_init();
+	if (texture_init(&vars, path))
+		freedom_exit_error("Error 666:TextureError|ssa", path, \
+	vars->map, vars);
 	vars->win = mlx_new_window(vars->mlx, WIDTH, HEIGHT, "CUB3D");
 	img.img = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.len, &img.edn);
 	vars->img = &img;
-	if (texture_init(vars, path))
-		return ;
 	projection(vars);
 	freedom("s", path);
 	mlx_hook(vars->win, 2, 1L << 0, keys, vars);

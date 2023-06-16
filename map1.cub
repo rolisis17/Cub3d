@@ -1,19 +1,10 @@
 
 NO ./textures/West_Wall.xpm
-WE ./textures/North_Wall.xpm
 EA ./textures/East_Wall.xpm
+WE ./textures/West_Wall.xpm
 SO ./textures/South_Wall.xpm
 
-C ,,
-F ,,
+C 255,0,255
+F 0,0,0
 
-1111111
-1S00001
-1000001
-1000001
-1000001
-1000001
-1000001
-1000001
-1000001
-1111111
+E

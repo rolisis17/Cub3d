@@ -3,7 +3,7 @@ BIN = objs
 OBJ = $(SRC:%.c=${BIN}/%.o)
 NAME = cub3D
 HEADERS = cube.h
-FLAGS = -Wall -Werror -Wextra -g -fPIE
+FLAGS = -Wall -Werror -Wextra -g -fPIE -flto
 FSAN = -fsanitize=address
 LIBFT = ./libft/libft.a
 MLX = ./mlx_linux/libmlx.a
